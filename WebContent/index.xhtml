@@ -5,23 +5,54 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:b="http://bootsfaces.net/ui"
 	>
 	<h:head>
 		<title>Index Aplicación</title>
+		
+		<link rel="stylesheet" href="css/style.css" />
 	</h:head>
 	
 	<h:body>
 		
 		<h:outputText value = "#{messageBean.message}" />
+		<b:navBar brand="Brand" brandHref="#" inverse="true">
+		  <b:navbarLinks>
+		    <b:navLink value="Home" href="#"></b:navLink>
+		    <b:navLink value="Link" href="#"></b:navLink>
+		    <b:navLink value="Link" href="#"></b:navLink>
+		  </b:navbarLinks>
+		</b:navBar>
 		<h:link value = "Go to Home" outcome = "home" />
 		<h:form>
 			<h:outputText value = "Usuario" />
 			<h:inputText value="#{loginBean.usuario}"></h:inputText>
 			<h:outputText value = "Password" />
 			<h:inputSecret value="#{loginBean.pass}"></h:inputSecret>
-			<h:commandButton value="Ingresar" action="#{loginBean.ingresar}" ></h:commandButton>
+			
+			
+			<h:commandButton class="btn btn-primary" value="Ingresar" action="#{loginBean.ingresar}" ></h:commandButton>
 			<h:commandButton value="Validar" action="#{loginBean.validar}" ></h:commandButton>
+			
+			
+			<b:dataTable value="#{loginBean.usuarios}"
+					excel="true"
+		               csv="true"
+		               pdf="true"
+		               columnVisibility="true"
+		               copy="true"
+		               print="true"
+		               var="usuario">
+		    <b:dataTableColumn value="#{usuario.nombre}" />
+		    <b:dataTableColumn value="#{usuario.email}" />
+		    <b:dataTableColumn value="#{usuario.pais}" />
+
+		  	</b:dataTable>
+			
+			
 		</h:form>
+		
+		
 	</h:body>
 	
 </html>

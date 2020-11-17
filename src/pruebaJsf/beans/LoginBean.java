@@ -1,8 +1,12 @@
 package pruebaJsf.beans;
 
+import java.util.List;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 
+import co.edu.ufps.sistemajpa.dao.UsuarioDao;
+import co.edu.ufps.sistemajpa.entidades.Usuario;
 import lombok.Data;
 
 @ManagedBean
@@ -17,6 +21,8 @@ public class LoginBean {
 	
 	private String usuario;
 	
+	private List<Usuario> usuarios;
+	
 	private String pass;
 	
 	public String ingresar() {
@@ -25,7 +31,7 @@ public class LoginBean {
 		
 			messageBean.setMessage("Bienvenido El usuario es " + usuario);
 			sessionBean.setUsuario(usuario);
-			return "home";
+			return "exito";
 			
 		}else {
 			messageBean.setMessage("Error El usuario " + usuario + " es invalido" );
@@ -39,5 +45,12 @@ public class LoginBean {
 	public void validar() {
 		System.out.println("Validar Usuario " + usuario + " Pass " + pass);
 	}
+	
+	public List<Usuario> getUsuarios() {
+		UsuarioDao uDao = new UsuarioDao();
+		return uDao.list();
+	}
+	
+	
 	
 }
