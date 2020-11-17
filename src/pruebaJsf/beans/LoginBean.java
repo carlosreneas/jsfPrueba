@@ -39,16 +39,16 @@ public class LoginBean {
 			return "error";
 			
 		}
-		//
+		// 
 	}
 	
 	public void validar() {
 		System.out.println("Validar Usuario " + usuario + " Pass " + pass);
 	}
 	
-	public List<Usuario> getUsuarios() {
+	public void obtenerUsuarios() {
 		UsuarioDao uDao = new UsuarioDao();
-		return uDao.list();
+		this.usuarios = uDao.list();
 	}
 	
 	

@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:p="http://primefaces.org/ui"
+	>
+	<h:head>
+		<title>Index Aplicación</title>
+				<link rel="stylesheet" href="css/style.css" />
+	</h:head>
+	
+	<h:body>
+		
+		<h:form>
+		<p:spinner />
+			<h:outputText value = "Usuario" />
+			<h:inputText value="#{loginBean.usuario}"></h:inputText>
+			<h:outputText value = "Password" />
+			<h:inputSecret value="#{loginBean.pass}"></h:inputSecret>
+			
+			
+			<h:commandButton class="btn btn-primary" value="Ingresar" action="#{loginBean.ingresar}" ></h:commandButton>
+			<h:commandButton value="Validar" action="#{loginBean.validar}" ></h:commandButton>
+			
+			
+			<p:commandButton value="Ajax Submit" id="ajax" update="tableUsers" action="#{loginBean.obtenerUsuarios}"  styleClass="ui-priority-primary" />
+ 
+    
+			
+			<b:panelGrid columns="6" size="sm" >
+			    <b:commandButton value="primary" ajax="true" action="#{loginBean.obtenerUsuarios}" update="tableUsers" look="primary" style="width:80px"/>
+			    <b:commandButton value="info" ajax="true" update="@none" look="info" style="width:80px"/>
+			    <b:commandButton value="success" ajax="true" update="@none" look="success" style="width:80px"/>
+			    <b:commandButton value="warning" ajax="true" update="@none" look="warning" style="width:80px"/>
+			    <b:commandButton value="danger" ajax="true" update="@none" look="danger" style="width:80px"/>
+			    <b:commandButton value="default" ajax="true" update="@none" style="width:80px"/>
+			  </b:panelGrid>
+
+			
+			
+			<b:dataTable id="tableUsers" value="#{loginBean.usuarios}" var="usuario"
+			
+				excel="true"
+               csv="true"
+               pdf="true"
+               columnVisibility="true"
+               copy="true"
+               print="true"
+			>
+				<b:dataTableColumn value="#{usuario.nombre}" />
+				<b:dataTableColumn value="#{usuario.pais}" />
+				<b:dataTableColumn value="#{usuario.email}" />
+			</b:dataTable>
+			
+			
+		
+			
+		</h:form>
+		
+	</h:body>
+	
+</html>
